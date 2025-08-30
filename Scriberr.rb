@@ -5,107 +5,43 @@
 class Scriberr < Formula
   desc "Audio transcription service using WhisperX with speaker diarization"
   homepage "https://github.com/rishikanthc/Scriberr"
-  version "1.0.0-beta.2"
+  version "1.0.0"
   license "MIT"
 
-  depends_on "python@3.11" => :optional
+  depends_on "uv"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0-beta.2/Scriberr_Darwin_x86_64.tar.gz"
-      sha256 "0097d6f19afdfedc8b61735390a34541f2685ae671bee3816ceb1f740fb57ea4"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0/Scriberr_Darwin_x86_64.tar.gz"
+      sha256 "137ac1f3402ad2a999b263e4644243077d1c8d274768b53722402b1714c88c4f"
 
       def install
         bin.install "scriberr"
-
-        # Create example config
-        (etc/"scriberr").mkpath
-        (etc/"scriberr/.env.example").write <<~EOS
-          # Scriberr Configuration
-          HOST=localhost
-          PORT=8080
-          JWT_SECRET=change-this-in-production
-          DATABASE_PATH=./data/scriberr.db
-          UPLOAD_DIR=./data/uploads
-          TRANSCRIPT_DIR=./data/transcripts
-          PYTHON_PATH=/opt/homebrew/bin/python3
-          UV_PATH=/opt/homebrew/bin/uv
-          WHISPERX_ENV=./data/whisperx-env
-          DEFAULT_API_KEY=scriberr-dev-key
-        EOS
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0-beta.2/Scriberr_Darwin_arm64.tar.gz"
-      sha256 "6c969c461ec7e08ec16855af02a0e97ecb00d8fda8aa6e49b96bce416ae59aed"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0/Scriberr_Darwin_arm64.tar.gz"
+      sha256 "1b2dfaf695c4e1fc2f9ba5cdb2eecf091bbdf93ec0a6b799386793c2c37afd09"
 
       def install
         bin.install "scriberr"
-
-        # Create example config
-        (etc/"scriberr").mkpath
-        (etc/"scriberr/.env.example").write <<~EOS
-          # Scriberr Configuration
-          HOST=localhost
-          PORT=8080
-          JWT_SECRET=change-this-in-production
-          DATABASE_PATH=./data/scriberr.db
-          UPLOAD_DIR=./data/uploads
-          TRANSCRIPT_DIR=./data/transcripts
-          PYTHON_PATH=/opt/homebrew/bin/python3
-          UV_PATH=/opt/homebrew/bin/uv
-          WHISPERX_ENV=./data/whisperx-env
-          DEFAULT_API_KEY=scriberr-dev-key
-        EOS
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0-beta.2/Scriberr_Linux_x86_64.tar.gz"
-      sha256 "cf2a699ee8fce0c6ff6d89518f34b81ff7dd088ac6065032bcf6d8686f7319db"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0/Scriberr_Linux_x86_64.tar.gz"
+      sha256 "08d7973e4c8e19a351d8d1dff62995b4eded167accf7640805a99ff16676baca"
       def install
         bin.install "scriberr"
-
-        # Create example config
-        (etc/"scriberr").mkpath
-        (etc/"scriberr/.env.example").write <<~EOS
-          # Scriberr Configuration
-          HOST=localhost
-          PORT=8080
-          JWT_SECRET=change-this-in-production
-          DATABASE_PATH=./data/scriberr.db
-          UPLOAD_DIR=./data/uploads
-          TRANSCRIPT_DIR=./data/transcripts
-          PYTHON_PATH=/opt/homebrew/bin/python3
-          UV_PATH=/opt/homebrew/bin/uv
-          WHISPERX_ENV=./data/whisperx-env
-          DEFAULT_API_KEY=scriberr-dev-key
-        EOS
       end
     end
     if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0-beta.2/Scriberr_Linux_arm64.tar.gz"
-      sha256 "70b6f8080baf780d93a155f9177959e70b257ed083664e033a0fc09f76930027"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.0/Scriberr_Linux_arm64.tar.gz"
+      sha256 "59d3506f0b898d99625fa0affc5061461740b6d9bec76f241c9b89887322afae"
       def install
         bin.install "scriberr"
-
-        # Create example config
-        (etc/"scriberr").mkpath
-        (etc/"scriberr/.env.example").write <<~EOS
-          # Scriberr Configuration
-          HOST=localhost
-          PORT=8080
-          JWT_SECRET=change-this-in-production
-          DATABASE_PATH=./data/scriberr.db
-          UPLOAD_DIR=./data/uploads
-          TRANSCRIPT_DIR=./data/transcripts
-          PYTHON_PATH=/opt/homebrew/bin/python3
-          UV_PATH=/opt/homebrew/bin/uv
-          WHISPERX_ENV=./data/whisperx-env
-          DEFAULT_API_KEY=scriberr-dev-key
-        EOS
       end
     end
   end
@@ -113,13 +49,13 @@ class Scriberr < Formula
   def caveats
     <<~EOS
       Scriberr requires Python 3.11+ for transcription features.
+      Install with: brew install python@3.11
 
       To get started:
-      1. Copy the example config: cp #{etc}/scriberr/.env.example .env
-      2. Edit .env to configure your settings
-      3. Run: scriberr
+      1. Run: scriberr
+      2. Open: http://localhost:8080
 
-      The web interface will be available at http://localhost:8080
+      The app will auto-configure itself on first run.
     EOS
   end
 
