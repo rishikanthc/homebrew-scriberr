@@ -5,23 +5,23 @@
 class Scriberr < Formula
   desc "Audio transcription service using WhisperX with speaker diarization"
   homepage "https://github.com/rishikanthc/Scriberr"
-  version "1.0.1"
+  version "1.0.2"
   license "MIT"
 
   depends_on "uv"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.1/Scriberr_Darwin_x86_64.tar.gz"
-      sha256 "0afd9d69a6ce8a65f9b5af61d0ae173d4261f53336d78ba66c1f95d29402d858"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.2/Scriberr_Darwin_x86_64.tar.gz"
+      sha256 "478b337f049a251231371b8cd3d1f4fc54c48b17306a0024a203afe6be17d86e"
 
       def install
         bin.install "scriberr"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.1/Scriberr_Darwin_arm64.tar.gz"
-      sha256 "2da722cceb0e1e52ff449167dcb7a911d954b9aa523885125ffeb332ec2223b7"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.2/Scriberr_Darwin_arm64.tar.gz"
+      sha256 "b0c1d318509bdc935314483e87aef3cb6ed2025668d3a65fd40692848e7035d2"
 
       def install
         bin.install "scriberr"
@@ -31,15 +31,15 @@ class Scriberr < Formula
 
   on_linux do
     if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.1/Scriberr_Linux_x86_64.tar.gz"
-      sha256 "020beadbd5f98c61f86590d8796aa33437d6ac024b016c3a57f6159379cc9f8b"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.2/Scriberr_Linux_x86_64.tar.gz"
+      sha256 "4571093c9debf7bb8c5b61fc57ceea4a8eaf0f30c7c144bc340def08c1c88ff5"
       def install
         bin.install "scriberr"
       end
     end
     if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
-      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.1/Scriberr_Linux_arm64.tar.gz"
-      sha256 "1d0adcf2198dd356ba6fb50d62362a62abfe986541fe9986b4544e035ee7a6a2"
+      url "https://github.com/rishikanthc/Scriberr/releases/download/v1.0.2/Scriberr_Linux_arm64.tar.gz"
+      sha256 "7035578664b8ab3277b168278dd77dd71aea35b37721585b62edf069f3ff7d09"
       def install
         bin.install "scriberr"
       end
